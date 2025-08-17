@@ -521,7 +521,7 @@
             <p class="section-subtitle">预约体验灵壳 SpiritShell<br>成为第一批用户，体验未来的陪伴方式</p>
             
             <div class="form-container">
-                <form id="preorder-form">
+                <form id="preorder-form" action="https://formspree.io/f/xnnzyvno" method="POST">
                     <div class="form-group">
                         <label for="name">姓名</label>
                         <input type="text" id="name" name="name" required>
@@ -556,6 +556,10 @@
                         <label for="message">其他需求（可选）</label>
                         <textarea id="message" name="message" rows="3" placeholder="请描述您的具体需求或期望..."></textarea>
                     </div>
+                    
+                    <!-- Formspree配置 -->
+                    <input type="hidden" name="_next" value="https://mirainthehub.github.io/spiritshell-website?submitted=true">
+                    <input type="hidden" name="_subject" value="【灵壳SpiritShell】新用户预约申请">
                     
                     <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">提交预约</button>
                 </form>
@@ -627,19 +631,29 @@
     </footer>
 
     <script>
+        // 检查是否是提交成功返回
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('submitted') === 'true') {
+            // 显示成功消息
+            alert('🎉 感谢您的预约！\n我们已收到您的申请，会尽快通过邮件与您联系。');
+            // 清除URL参数
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
         // 表单提交处理
         document.getElementById('preorder-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+            // 不阻止默认提交行为，让Formspree处理
+            // 显示提交中状态
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '提交中...';
+            submitBtn.disabled = true;
             
-            // 收集表单数据
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // 显示成功消息
-            alert('感谢您的预约！我们会尽快与您联系。');
-            
-            // 重置表单
-            this.reset();
+            // 设置超时恢复按钮状态（防止网络问题导致按钮一直禁用）
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
         });
 
         // 平滑滚动
