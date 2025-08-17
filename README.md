@@ -4,7 +4,7 @@
 
 ## 预览
 
-访问网站：[https://mirainthehub.github.io/spiritshell-website](https://yourusername.github.io/spiritshell-website)
+访问网站：[https://mirainthehub.github.io/spiritshell-website](https://mirainthehub.github.io/spiritshell-website)
 
 ## 功能特点
 
