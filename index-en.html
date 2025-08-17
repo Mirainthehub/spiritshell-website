@@ -95,8 +95,11 @@
             height: 120px;
             margin-bottom: 1rem;
             animation: float 3s ease-in-out infinite;
-            filter: brightness(0) invert(1); /* Make logo white */
             transition: transform 0.3s ease;
+            /* Remove filter, use original color with background */
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            padding: 10px;
         }
 
         .logo:hover {
