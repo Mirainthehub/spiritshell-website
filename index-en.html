@@ -4,8 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpiritShell - A shell for the spirit. A companion across distance.</title>
+    <meta name="description" content="SpiritShell is a human-centered companionship system combining telepresence with AI relay. When you can't be there, your spirit remains present." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <meta property="og:title" content="SpiritShell 灵壳" />
+    <meta property="og:description" content="A shell for the spirit. A companion across distance." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mirainthehub.github.io/spiritshell-website/" />
+    <meta property="og:image" content="https://mirainthehub.github.io/spiritshell-website/og-image.jpg" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SpiritShell 灵壳" />
+    <meta name="twitter:description" content="A shell for the spirit. A companion across distance." />
+    <meta name="twitter:image" content="https://mirainthehub.github.io/spiritshell-website/og-image.jpg" />
+    <link rel="canonical" href="https://mirainthehub.github.io/spiritshell-website/" />
+    
     <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+     "@context": "https://schema.org",
+     "@type": "Organization",
+     "name": "SpiritShell",
+     "url": "https://mirainthehub.github.io/spiritshell-website/",
+     "logo": "https://mirainthehub.github.io/spiritshell-website/logo.png",
+     "sameAs": ["https://www.linkedin.com/company/spiritshell"]
+    }
+    </script>
+    
+    <!-- Analytics (commented out - uncomment when ready) -->
+    <!-- <script defer data-domain="mirainthehub.github.io" src="https://plausible.io/js/script.js"></script> -->
     <style>
         * {
             margin: 0;
@@ -424,6 +453,98 @@
             color: #9ca3af;
         }
 
+        /* Key Points */
+        .keypoints-section {
+            background: #f1f5f9;
+            padding: 60px 0;
+        }
+
+        .keypoints {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            list-style: none;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .keypoints li {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1f2937;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #0369a1;
+        }
+
+        /* Form consent */
+        .form-consent {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .form-consent a {
+            color: #0369a1;
+            text-decoration: none;
+        }
+
+        .form-consent a:hover {
+            text-decoration: underline;
+        }
+
+        /* Improved form styling */
+        .form-container label {
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-container input,
+        .form-container select,
+        .form-container textarea {
+            width: 100%;
+            padding: 12px 16px;
+            margin-top: 0.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-container input:focus,
+        .form-container select:focus,
+        .form-container textarea:focus {
+            outline: none;
+            border-color: #0369a1;
+        }
+
+        /* Better color contrast */
+        :root { 
+            --text: #0a1320; 
+            --muted: #223; 
+        }
+        
+        body { 
+            color: var(--text); 
+        }
+        
+        .cta-button, button { 
+            color: #fff !important; 
+            background: #0a3a6b !important; 
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover, button:hover {
+            background: #083152 !important;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
@@ -462,17 +583,17 @@
 <body>
     <!-- Language Switcher -->
     <div class="language-switcher">
-        <a href="index.html">中文</a>
+        <a href="index.html#join">中文</a>
         <a href="index-en.html" class="active">EN</a>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <img src="logo.png" alt="SpiritShell Logo" class="logo">
+            <img src="logo.png" alt="SpiritShell nautilus logo" class="logo" loading="lazy">
             <h1>SpiritShell</h1>
             <p>A shell for the spirit. A companion across distance.</p>
-            <a href="#cta" class="cta-button">Join the Waitlist</a>
+            <a href="#join" class="cta-button">Join the Waitlist</a>
         </div>
     </section>
 
@@ -496,6 +617,17 @@
                 
                 <p><strong>We believe technology should not replace humans, but extend the ways we connect and care for each other.</strong></p>
             </div>
+        </div>
+    </section>
+
+    <!-- Key Points Section -->
+    <section class="keypoints-section section">
+        <div class="container">
+            <ul class="keypoints" aria-label="Key benefits">
+                <li>Human telepresence across distance</li>
+                <li>AI relay that continues your warmth</li>
+                <li>Privacy-first and compliant by design</li>
+            </ul>
         </div>
     </section>
 
@@ -588,55 +720,54 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section section" id="cta">
+    <!-- Join Section -->
+    <section id="join" class="cta-section section">
         <div class="container">
-            <h2 class="section-title">Join Us</h2>
+            <h2 class="section-title">Join the Waitlist</h2>
             <p class="section-subtitle">Be the First to Experience SpiritShell<br>Sign up for early access and help shape the future of companionship</p>
             
             <div class="form-container">
-                <form id="preorder-form" action="https://formspree.io/f/xnnzyvno" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="usage">Intended Use</label>
-                        <select id="usage" name="usage" required>
-                            <option value="">Please select</option>
-                            <option value="personal">Personal</option>
-                            <option value="institution">Institution</option>
+                <form action="https://formspree.io/f/xnnzyvno" method="POST">
+                    <label>
+                        Name
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" name="_replyto" placeholder="name@example.com" required>
+                    </label>
+                    <label>
+                        Intended Use
+                        <select name="intent" required>
+                            <option value="">Select...</option>
+                            <option>Personal</option>
+                            <option>Institution</option>
                         </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="scenario">Preferred Scenario</label>
-                        <select id="scenario" name="scenario" required>
-                            <option value="">Please select</option>
-                            <option value="elderly">Elderly Care</option>
-                            <option value="children">Child Companionship</option>
-                            <option value="healthcare">Wellness & Therapeutic</option>
-                            <option value="other">Other</option>
+                    </label>
+                    <label>
+                        Preferred Scenario
+                        <select name="scenario" required>
+                            <option value="">Select...</option>
+                            <option>Elderly</option>
+                            <option>Child</option>
+                            <option>Wellness</option>
+                            <option>Other</option>
                         </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Additional Requirements (Optional)</label>
-                        <textarea id="message" name="message" rows="3" placeholder="Please describe your specific needs or expectations..."></textarea>
-                    </div>
-                    
-                    <!-- Formspree Configuration -->
-                    <input type="hidden" name="_next" value="https://mirainthehub.github.io/spiritshell-website/index-en.html?submitted=true">
-                    <input type="hidden" name="_subject" value="【SpiritShell】New Waitlist Registration (English)">
-                    <input type="hidden" name="_language" value="English">
-                    
-                    <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">Join Waitlist</button>
+                    </label>
+                    <label>
+                        Notes (optional)
+                        <textarea name="notes" placeholder="Tell us more..."></textarea>
+                    </label>
+
+                    <input type="hidden" name="_subject" value="SpiritShell Waitlist">
+                    <input type="hidden" name="_language" value="en">
+
+                    <p class="form-consent">
+                        By submitting, you agree to our
+                        <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+                    </p>
+
+                    <button type="submit" aria-label="Submit waitlist form" class="cta-button" style="width: 100%; margin-top: 1rem;">Join</button>
                 </form>
             </div>
             
@@ -661,7 +792,7 @@
                 
                 <div class="faq-item">
                     <div class="faq-question">When will the first units be available?</div>
-                    <div class="faq-answer">We plan to begin small-scale pilots in late 2024 and officially launch in 2025. Waitlist users will receive priority access and special discounts.</div>
+                    <div class="faq-answer">Targeting limited pilots from late 2024, with broader availability in 2025 (timelines may adjust).</div>
                 </div>
             </div>
         </div>
@@ -674,8 +805,8 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <a href="mailto:spiritshell99@gmail.com">spiritshell99@gmail.com</a>
-                    <a href="#">WeChat</a>
-                    <a href="https://www.linkedin.com/company/spiritshell" target="_blank">LinkedIn</a>
+                    <a href="#" target="_blank" rel="noopener">WeChat</a>
+                    <a href="https://www.linkedin.com/company/spiritshell" target="_blank" rel="noopener">LinkedIn</a>
                 </div>
                 
                 <div class="footer-section">
@@ -687,13 +818,13 @@
                 
                 <div class="footer-section">
                     <h4>Legal</h4>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
-                    <a href="#">Cookie Policy</a>
+                    <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+                    <a href="terms.html" target="_blank" rel="noopener">Terms of Use</a>
+                    <a href="cookies.html" target="_blank" rel="noopener">Cookie Policy</a>
                 </div>
                 
                 <div class="footer-section">
-                    <img src="logo.png" alt="SpiritShell Logo" class="logo-footer">
+                    <img src="logo.png" alt="SpiritShell nautilus logo" class="logo-footer" loading="lazy">
                     <h4>SpiritShell</h4>
                     <p style="color: #9ca3af; margin-bottom: 1rem;">A shell for the spirit. A companion across distance.</p>
                     <p style="color: #9ca3af;">Technology as an extension of emotion</p>
@@ -707,30 +838,7 @@
     </footer>
 
     <script>
-        // Check for successful form submission
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('submitted') === 'true') {
-            // Show success message
-            alert('🎉 Thank you for joining our waitlist!\nWe have received your application and will contact you via email soon.');
-            // Clear URL parameters
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
-
-        // Form submission handling
-        document.getElementById('preorder-form').addEventListener('submit', function(e) {
-            // Don't prevent default behavior, let Formspree handle it
-            // Show submitting state
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Submitting...';
-            submitBtn.disabled = true;
-            
-            // Set timeout to restore button state (in case of network issues)
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 3000);
-        });
+        // Formspree will handle form submission automatically
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
