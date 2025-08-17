@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵壳 SpiritShell - 灵魂的分身，陪伴的外壳</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 50%, #0369a1 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 5 A45 45 0 0 1 95 50 A40 40 0 0 1 55 90 A35 35 0 0 1 20 55 A30 30 0 0 1 50 25 A25 25 0 0 1 75 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') center;
+            animation: spiral 20s linear infinite;
+        }
+
+        @keyframes spiral {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8fafc;
+        }
+
+        .about-content {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        .about-highlight {
+            background: linear-gradient(135deg, #e0f2fe, #b3e5fc);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 3rem 0;
+            border-left: 5px solid #0369a1;
+        }
+
+        .about-highlight h3 {
+            font-size: 1.5rem;
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+        }
+
+        /* Products Section */
+        .products {
+            background: white;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid #f1f5f9;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.8rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .product-card .subtitle {
+            color: #6b7280;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            background: #f8fafc;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .feature-item h4 {
+            font-size: 1.3rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        /* Social Value Section */
+        .social-value {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+        }
+
+        .social-value .section-title {
+            color: white;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .value-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #93c5fd;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: white;
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8fafc;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0369a1;
+        }
+
+        /* FAQ Section */
+        .faq {
+            margin-top: 4rem;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #93c5fd;
+        }
+
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #93c5fd;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-container {
+                margin: 0 20px;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">🐚</div>
+            <h1>灵壳 SpiritShell</h1>
+            <p>灵魂的分身，陪伴的外壳</p>
+            <a href="#cta" class="cta-button">立即预约</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section">
+        <div class="container">
+            <h2 class="section-title">为什么是灵壳？</h2>
+            <div class="about-content">
+                <p>在自然中，壳是守护与存在的象征；而灵，则代表陪伴与心灵。</p>
+                <p>灵壳 SpiritShell 是一个融合人性与科技的陪伴系统：</p>
+                
+                <div class="about-highlight">
+                    <h3>当你无法亲临时，你的"灵"依然在场。</h3>
+                    <p>通过先进的远程操作技术，让距离不再是陪伴的障碍。</p>
+                </div>
+                
+                <div class="about-highlight">
+                    <h3>当你暂时离开时，AI 会延续你的温度。</h3>
+                    <p>智能系统学习你的陪伴方式，在你不在时继续传递关怀。</p>
+                </div>
+                
+                <p><strong>我们相信：科技不是替代人，而是让人以新的方式陪伴彼此。</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products section">
+        <div class="container">
+            <h2 class="section-title">子品牌产品</h2>
+            <p class="section-subtitle">为不同场景设计的陪伴角色</p>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">🐻</div>
+                    <h3>冰冰熊 (Ice Ice Bear)</h3>
+                    <p class="subtitle">冷静守护者</p>
+                    <p>稳定、可靠、安心感</p>
+                    <p>适合老人陪伴、康养环境</p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">🐱</div>
+                    <h3>米拉猫 (Mira Cat)</h3>
+                    <p class="subtitle">灵动陪伴者</p>
+                    <p>活泼、温柔、好奇心</p>
+                    <p>适合儿童陪伴、日常互动</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features section">
+        <div class="container">
+            <h2 class="section-title">功能与场景</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>远程在场</h4>
+                    <p>通过远程操作，你可以在任何地方与家人互动。实时视频通话、语音交流、甚至简单的身体互动都成为可能。</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>AI 分身接力</h4>
+                    <p>系统会学习你的对话与情感风格，在你不在时继续陪伴。让爱的温度24小时不间断。</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>老人关怀</h4>
+                    <p>为独居老人提供日常陪伴，健康监测，紧急呼叫等服务。让子女安心，让老人温心。</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>儿童陪伴</h4>
+                    <p>寓教于乐的互动方式，安全的成长环境监护，让孩子在游戏中学习，在陪伴中成长。</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>异地亲友互动</h4>
+                    <p>跨越地理距离的限制，让亲情友情不再因距离而淡化。随时随地的情感连接。</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>康养与疗愈</h4>
+                    <p>专业的康复训练指导，心理健康支持，为需要特殊照护的人群提供专业陪伴。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Value Section -->
+    <section class="social-value section">
+        <div class="container">
+            <h2 class="section-title">社会价值</h2>
+            
+            <div class="value-grid">
+                <div class="value-item">
+                    <h4>残障人士的社会参与</h4>
+                    <p>灵壳的远程操作模式，让无法出行的人也能提供陪伴服务，重新获得社会价值感和经济收入。</p>
+                </div>
+                
+                <div class="value-item">
+                    <h4>心理健康与孤独缓解</h4>
+                    <p>陪伴不仅是技术，更是关怀。我们致力于缓解现代社会的孤独问题，提升每个人的心理健康水平。</p>
+                </div>
+                
+                <div class="value-item">
+                    <h4>科技与人性结合</h4>
+                    <p>灵壳不是替代人，而是延续人与人之间的联结。让科技成为情感的延伸，而非替代。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section" id="cta">
+        <div class="container">
+            <h2 class="section-title">加入我们</h2>
+            <p class="section-subtitle">预约体验灵壳 SpiritShell<br>成为第一批用户，体验未来的陪伴方式</p>
+            
+            <div class="form-container">
+                <form id="preorder-form">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="usage">使用意向</label>
+                        <select id="usage" name="usage" required>
+                            <option value="">请选择</option>
+                            <option value="personal">个人</option>
+                            <option value="institution">机构</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scenario">场景偏好</label>
+                        <select id="scenario" name="scenario" required>
+                            <option value="">请选择</option>
+                            <option value="elderly">老人陪伴</option>
+                            <option value="children">儿童陪伴</option>
+                            <option value="healthcare">康养疗愈</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">其他需求（可选）</label>
+                        <textarea id="message" name="message" rows="3" placeholder="请描述您的具体需求或期望..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">提交预约</button>
+                </form>
+            </div>
+            
+            <!-- FAQ Section -->
+            <div class="faq">
+                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: #1f2937;">常见问题</h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question">灵壳和普通机器人有什么不同？</div>
+                    <div class="faq-answer">灵壳结合了人工远程操作和AI智能系统，既有人性化的真实互动，又有AI的持续陪伴。这种双重模式确保了陪伴的真实性和连续性。</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">真人操作和 AI 接力如何切换？</div>
+                    <div class="faq-answer">系统会智能判断最佳切换时机，也支持手动控制。当真人操作员离线时，AI会无缝接管，确保陪伴服务不中断。</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">我的数据是否安全？</div>
+                    <div class="faq-answer">我们采用端到端加密技术，严格遵守数据保护法规。所有个人信息和交互数据都经过加密处理，绝不会泄露给第三方。</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">什么时候可以收到产品？</div>
+                    <div class="faq-answer">我们计划在2024年下半年开始小规模试点，2025年正式上市。预约用户将获得优先体验权和特殊优惠。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>联系方式</h4>
+                    <a href="mailto:hello@spiritshell.ai">hello@spiritshell.ai</a>
+                    <a href="#">微信公众号</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>产品信息</h4>
+                    <a href="#about">品牌理念</a>
+                    <a href="#products">产品角色</a>
+                    <a href="#features">功能场景</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>法律信息</h4>
+                    <a href="#">隐私政策</a>
+                    <a href="#">使用条款</a>
+                    <a href="#">Cookies 声明</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>灵壳 SpiritShell</h4>
+                    <p style="color: #9ca3af; margin-bottom: 1rem;">灵魂的分身，陪伴的外壳</p>
+                    <p style="color: #9ca3af;">让科技成为情感的延伸</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 SpiritShell. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 表单提交处理
+        document.getElementById('preorder-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 收集表单数据
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // 显示成功消息
+            alert('感谢您的预约！我们会尽快与您联系。');
+            
+            // 重置表单
+            this.reset();
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FAQ 交互
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isVisible = answer.style.display === 'block';
+                
+                // 隐藏所有答案
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.style.display = 'none';
+                });
+                
+                // 切换当前答案
+                if (!isVisible) {
+                    answer.style.display = 'block';
+                }
+            });
+        });
+
+        // 添加滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有section
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
