@@ -524,21 +524,26 @@
             border-color: #0369a1;
         }
 
-        /* Experience entry link */
+        /* Experience entry button */
         .experience-link {
             display: inline-block;
-            margin-top: 1.4rem;
-            color: rgba(255, 255, 255, 0.3);
+            margin-top: 1rem;
+            padding: 14px 36px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.65) !important;
+            background: transparent !important;
             text-decoration: none;
-            font-size: 0.82rem;
-            font-weight: 300;
-            letter-spacing: 0.1em;
-            transition: color 0.3s ease;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
         }
 
         .experience-link:hover {
-            color: rgba(255, 255, 255, 0.55) !important;
-            background: none !important;
+            border-color: rgba(255, 255, 255, 0.55) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            background: rgba(255, 255, 255, 0.06) !important;
         }
 
         /* Better color contrast */
@@ -612,7 +617,7 @@
             <p>灵魂的分身，陪伴的外壳</p>
             <a href="#join" class="cta-button">立即预约</a>
             <br>
-            <a href="experience-entry.html" class="experience-link">轻说一句 →</a>
+            <a href="experience-entry.html" class="experience-link">稍稍体验</a>
         </div>
     </section>
 
