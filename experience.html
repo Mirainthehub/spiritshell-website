@@ -229,6 +229,10 @@
             transform: translateY(0);
         }
 
+        .response-line {
+            display: block;
+        }
+
         .return-link {
             display: inline-block;
             margin-top: 3.8rem;
@@ -274,34 +278,51 @@
     <div class="content">
         <p class="user-sentence" id="user-text"></p>
         <div class="divider" id="divider"></div>
-        <p class="response" id="response">
-            你不是没有放下<br>
-            你是在慢慢放<br>
-            只是你希望它更快一点
-        </p>
+        <p class="response" id="response"></p>
         <a href="experience-entry.html" class="return-link">← 再说一句</a>
     </div>
 
-    <script>
+    <script type="module">
+        import { runSpiritshellEngine } from './lib/spiritshell/engine.js';
+
+        // Fade in page
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 document.body.classList.add('visible');
             });
         });
 
-        const stored = localStorage.getItem('spiritshell_input');
         const userTextEl = document.getElementById('user-text');
         const dividerEl  = document.getElementById('divider');
+        const responseEl = document.getElementById('response');
 
-        if (stored && stored.trim()) {
-            userTextEl.textContent = stored.trim();
+        const stored = localStorage.getItem('spiritshell_input');
+        const inputText = stored ? stored.trim() : '';
+
+        if (inputText) {
+            userTextEl.textContent = inputText;
         } else {
             userTextEl.style.display = 'none';
             dividerEl.style.display  = 'none';
         }
 
+        // Run engine
+        const turn = {
+            sessionId: Date.now().toString(),
+            text:      inputText || '',
+            createdAt: new Date().toISOString(),
+        };
+
+        const output = runSpiritshellEngine(turn);
+
+        // Render response lines
+        responseEl.innerHTML = output.response
+            .map(line => `<span class="response-line">${line}</span>`)
+            .join('');
+
+        // Reveal after a breath
         setTimeout(() => {
-            document.getElementById('response').classList.add('visible');
+            responseEl.classList.add('visible');
         }, 1600);
     </script>
 
