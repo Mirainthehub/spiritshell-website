@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #07070d;
+            background: #fdfcff;
             min-height: 100vh;
             min-height: 100dvh;
             display: flex;
@@ -31,7 +31,7 @@
             pointer-events: none;
         }
 
-        /* ─── Luma-style color orbs ─── */
+        /* ─── Luma gradient orbs ─── */
 
         .orbs {
             position: fixed;
@@ -44,70 +44,86 @@
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(72px);
+            filter: blur(90px);
         }
 
-        /* Purple-violet — top left */
+        /* Cyan — top left */
         .orb-1 {
-            width: 680px;
-            height: 680px;
-            top: -22%;
-            left: -18%;
-            background: radial-gradient(circle, rgba(104, 99, 248, 0.16) 0%, transparent 65%);
-            animation: drift-1 24s ease-in-out infinite;
+            width: 720px;
+            height: 720px;
+            top: -30%;
+            left: -20%;
+            background: radial-gradient(circle, rgba(9, 158, 241, 0.22) 0%, transparent 60%);
+            animation: drift-1 26s ease-in-out infinite;
         }
 
-        /* Magenta — bottom right */
+        /* Purple — top right */
         .orb-2 {
-            width: 560px;
-            height: 560px;
-            bottom: -18%;
-            right: -12%;
-            background: radial-gradient(circle, rgba(216, 79, 250, 0.12) 0%, transparent 65%);
-            animation: drift-2 30s ease-in-out infinite;
+            width: 600px;
+            height: 600px;
+            top: -20%;
+            right: -18%;
+            background: radial-gradient(circle, rgba(104, 99, 248, 0.20) 0%, transparent 60%);
+            animation: drift-2 22s ease-in-out infinite;
         }
 
-        /* Cyan-blue — center, breathing */
+        /* Pink/Magenta — bottom center */
         .orb-3 {
-            width: 480px;
-            height: 480px;
+            width: 640px;
+            height: 640px;
+            bottom: -25%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(240, 88, 197, 0.18) 0%, transparent 60%);
+            animation: drift-3 30s ease-in-out infinite;
+        }
+
+        /* Warm orange — bottom right accent */
+        .orb-4 {
+            width: 400px;
+            height: 400px;
+            bottom: -10%;
+            right: -8%;
+            background: radial-gradient(circle, rgba(255, 137, 31, 0.14) 0%, transparent 60%);
+            animation: drift-4 18s ease-in-out infinite;
+        }
+
+        /* Central breathing glow */
+        .orb-5 {
+            width: 500px;
+            height: 500px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(9, 158, 241, 0.09) 0%, transparent 65%);
-            animation: breathe-orb 12s ease-in-out infinite;
-        }
-
-        /* Warm rose accent — bottom left */
-        .orb-4 {
-            width: 380px;
-            height: 380px;
-            bottom: 5%;
-            left: -5%;
-            background: radial-gradient(circle, rgba(240, 88, 197, 0.08) 0%, transparent 65%);
-            animation: drift-3 20s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(216, 79, 250, 0.07) 0%, transparent 60%);
+            animation: breathe-orb 11s ease-in-out infinite;
         }
 
         @keyframes drift-1 {
             0%, 100% { transform: translate(0, 0); }
-            40%       { transform: translate(50px, 35px); }
-            70%       { transform: translate(-25px, 55px); }
+            40%       { transform: translate(40px, 50px); }
+            70%       { transform: translate(-20px, 30px); }
         }
 
         @keyframes drift-2 {
             0%, 100% { transform: translate(0, 0); }
-            35%       { transform: translate(-40px, -45px); }
-            70%       { transform: translate(25px, -20px); }
+            35%       { transform: translate(-35px, 40px); }
+            70%       { transform: translate(15px, 20px); }
         }
 
         @keyframes drift-3 {
+            0%, 100% { transform: translateX(-50%) translate(0, 0); }
+            50%       { transform: translateX(-50%) translate(30px, -30px); }
+        }
+
+        @keyframes drift-4 {
             0%, 100% { transform: translate(0, 0); }
-            50%       { transform: translate(30px, -40px); }
+            50%       { transform: translate(-25px, -35px); }
         }
 
         @keyframes breathe-orb {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.18); }
         }
 
         /* ─── Water ripple rings ─── */
@@ -125,16 +141,15 @@
             top: 50%;
             left: 50%;
             border-radius: 50%;
-            /* Gradient border: slightly visible at top, fades at bottom */
             border: 1px solid transparent;
             background:
-                linear-gradient(#07070d, #07070d) padding-box,
+                linear-gradient(#fdfcff, #fdfcff) padding-box,
                 linear-gradient(
-                    160deg,
-                    rgba(180, 150, 255, 0.22),
-                    rgba(120, 180, 255, 0.10) 40%,
-                    rgba(240, 100, 220, 0.08) 70%,
-                    rgba(180, 150, 255, 0.04)
+                    145deg,
+                    rgba(104, 99, 248, 0.28),
+                    rgba(9, 158, 241, 0.18) 35%,
+                    rgba(240, 88, 197, 0.18) 65%,
+                    rgba(255, 137, 31, 0.10)
                 ) border-box;
             transform: translate(-50%, -50%) scale(0.2);
             opacity: 0;
@@ -152,17 +167,16 @@
                 transform: translate(-50%, -50%) scale(0.2);
                 opacity: 0;
             }
-            6% { opacity: 1; }
-            65% {
-                border-color: transparent;
+            6%  { opacity: 1; }
+            60% {
                 background:
-                    linear-gradient(#07070d, #07070d) padding-box,
+                    linear-gradient(#fdfcff, #fdfcff) padding-box,
                     linear-gradient(
-                        160deg,
-                        rgba(180, 150, 255, 0.04),
-                        rgba(120, 180, 255, 0.02) 40%,
-                        rgba(240, 100, 220, 0.015) 70%,
-                        rgba(180, 150, 255, 0.01)
+                        145deg,
+                        rgba(104, 99, 248, 0.06),
+                        rgba(9, 158, 241, 0.04) 35%,
+                        rgba(240, 88, 197, 0.04) 65%,
+                        rgba(255, 137, 31, 0.02)
                     ) border-box;
             }
             100% {
@@ -185,7 +199,7 @@
         .hero-title {
             font-size: clamp(1.3rem, 4vw, 1.8rem);
             font-weight: 300;
-            color: rgba(235, 228, 220, 0.80);
+            color: rgba(30, 22, 55, 0.78);
             letter-spacing: 0.015em;
             margin-bottom: 0.55rem;
         }
@@ -193,7 +207,7 @@
         .hero-sub {
             font-size: 0.9rem;
             font-weight: 300;
-            color: rgba(195, 188, 200, 0.40);
+            color: rgba(90, 75, 130, 0.48);
             line-height: 2.2;
             margin-bottom: 2.8rem;
             letter-spacing: 0.025em;
@@ -208,44 +222,44 @@
         textarea {
             display: block;
             width: 100%;
-            /* Glassmorphism — absorbs orb colors */
-            background: rgba(255, 255, 255, 0.028);
-            border: 1px solid rgba(255, 255, 255, 0.075);
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(140, 120, 200, 0.18);
             border-radius: 16px;
             padding: 20px 22px;
             font-family: inherit;
             font-size: 1rem;
             font-weight: 300;
-            color: rgba(232, 226, 218, 0.88);
+            color: rgba(28, 20, 52, 0.85);
             line-height: 1.78;
             resize: none;
             min-height: 112px;
             outline: none;
             transition: border-color 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
-            caret-color: rgba(170, 150, 255, 0.8);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            caret-color: rgba(104, 99, 248, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(104, 99, 248, 0.06);
         }
 
         textarea::placeholder {
-            color: rgba(175, 168, 185, 0.30);
+            color: rgba(120, 105, 165, 0.38);
             font-weight: 300;
             font-style: italic;
         }
 
         textarea:focus {
-            background: rgba(255, 255, 255, 0.038);
-            border-color: rgba(150, 130, 255, 0.18);
+            background: rgba(255, 255, 255, 0.88);
+            border-color: rgba(104, 99, 248, 0.30);
             box-shadow:
-                0 0 0 3px rgba(104, 99, 248, 0.06),
-                0 0 60px rgba(104, 99, 248, 0.08),
-                inset 0 0 30px rgba(104, 99, 248, 0.025);
+                0 0 0 3px rgba(104, 99, 248, 0.08),
+                0 4px 30px rgba(104, 99, 248, 0.12),
+                0 2px 20px rgba(240, 88, 197, 0.06);
         }
 
         .presence {
             font-size: 0.73rem;
             font-weight: 300;
-            color: rgba(180, 165, 200, 0.22);
+            color: rgba(120, 100, 170, 0.32);
             letter-spacing: 0.16em;
             margin-top: 0.7rem;
             text-align: right;
@@ -257,7 +271,7 @@
             margin-top: 2.2rem;
             font-size: 0.68rem;
             font-weight: 300;
-            color: rgba(160, 152, 175, 0.18);
+            color: rgba(110, 95, 150, 0.28);
             letter-spacing: 0.1em;
             user-select: none;
         }
@@ -265,7 +279,6 @@
         /* ─── Mobile ─── */
 
         @media (max-width: 420px) {
-            .orb-1, .orb-2 { opacity: 0.7; }
             .ring.r4, .ring.r5 { display: none; }
             .content { padding: 0 22px; }
             textarea { padding: 16px 18px; }
@@ -274,15 +287,14 @@
 </head>
 <body>
 
-    <!-- Color orbs -->
     <div class="orbs">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
         <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
     </div>
 
-    <!-- Water ripple rings -->
     <div class="ripples">
         <div class="ring r1"></div>
         <div class="ring r2"></div>
@@ -309,7 +321,6 @@
     <script>
         const textarea = document.getElementById('thought');
 
-        // ── Cycling placeholder ──
         const placeholders = [
             '...',
             '随便说一句就好',
@@ -335,7 +346,6 @@
             textarea.placeholder = '';
         }, { once: true });
 
-        // ── Enter to submit ──
         textarea.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
