@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵壳 · SpiritShell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { height: 100%; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #070a0f;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        body.visible {
+            opacity: 1;
+        }
+
+        /* ─── Ambient atmosphere (shared) ─── */
+
+        .ambient {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ambient-core {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                ellipse at 50% 44%,
+                rgba(55, 85, 135, 0.11) 0%,
+                transparent 62%
+            );
+            animation: breathe 10s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { opacity: 0.45; transform: scale(1); }
+            50%       { opacity: 1;    transform: scale(1.07); }
+        }
+
+        .ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            border: 1px solid rgba(100, 130, 180, 0.048);
+            transform: translate(-50%, -50%) scale(0.85);
+            animation: ripple-expand 20s ease-out infinite;
+        }
+
+        .ripple.r1 { width: 380px; height: 250px; animation-delay: 0s;  }
+        .ripple.r2 { width: 620px; height: 410px; animation-delay: 6s;  }
+        .ripple.r3 { width: 860px; height: 570px; animation-delay: 12s; }
+
+        @keyframes ripple-expand {
+            0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+            12%  { opacity: 1; }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.22); }
+        }
+
+        /* ─── Content ─── */
+
+        .content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 500px;
+            padding: 0 32px;
+            text-align: center;
+        }
+
+        /* User's sentence */
+        .user-sentence {
+            font-size: 0.98rem;
+            font-weight: 300;
+            color: rgba(195, 188, 180, 0.48);
+            font-style: italic;
+            line-height: 1.85;
+            letter-spacing: 0.01em;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* Divider */
+        .divider {
+            width: 28px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.065);
+            margin: 2.4rem auto;
+        }
+
+        /* Spiritshell response */
+        .response {
+            font-size: 1.12rem;
+            font-weight: 300;
+            color: rgba(222, 215, 205, 0.82);
+            line-height: 2.3;
+            letter-spacing: 0.025em;
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 1.3s ease, transform 1.3s ease;
+        }
+
+        .response.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Return link */
+        .return-link {
+            display: inline-block;
+            margin-top: 3.8rem;
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: rgba(155, 150, 142, 0.2);
+            letter-spacing: 0.14em;
+            text-decoration: none;
+            transition: color 0.35s ease;
+        }
+
+        .return-link:hover {
+            color: rgba(175, 170, 162, 0.42);
+        }
+
+        /* ─── Mobile ─── */
+
+        @media (max-width: 420px) {
+            .ripple.r2, .ripple.r3 { display: none; }
+            .content { padding: 0 24px; }
+            .response { font-size: 1.04rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient">
+        <div class="ambient-core"></div>
+        <div class="ripple r1"></div>
+        <div class="ripple r2"></div>
+        <div class="ripple r3"></div>
+    </div>
+
+    <div class="content">
+        <p class="user-sentence" id="user-text"></p>
+        <div class="divider"></div>
+        <p class="response" id="response">
+            你不是没有放下<br>
+            你是在慢慢放<br>
+            只是你希望它更快一点
+        </p>
+        <a href="experience-entry.html" class="return-link">← 再说一句</a>
+    </div>
+
+    <script>
+        // Fade in on load
+        requestAnimationFrame(() => {
+            // Double rAF ensures the initial opacity:0 has painted before transition starts
+            requestAnimationFrame(() => {
+                document.body.classList.add('visible');
+            });
+        });
+
+        // Load what the user typed
+        const stored = localStorage.getItem('spiritshell_input');
+        const userTextEl = document.getElementById('user-text');
+
+        if (stored && stored.trim()) {
+            userTextEl.textContent = stored.trim();
+        } else {
+            // Fallback if arriving directly without input
+            userTextEl.style.display = 'none';
+            document.querySelector('.divider').style.display = 'none';
+        }
+
+        // Reveal response after a breath
+        setTimeout(() => {
+            document.getElementById('response').classList.add('visible');
+        }, 1600);
+    </script>
+
+</body>
+</html>

@@ -524,10 +524,27 @@
             border-color: #0369a1;
         }
 
+        /* Experience entry link */
+        .experience-link {
+            display: inline-block;
+            margin-top: 1.4rem;
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .experience-link:hover {
+            color: rgba(255, 255, 255, 0.55) !important;
+            background: none !important;
+        }
+
         /* Better color contrast */
-        :root { 
-            --text: #0a1320; 
-            --muted: #223; 
+        :root {
+            --text: #0a1320;
+            --muted: #223;
         }
         
         body { 
@@ -594,6 +611,8 @@
             <h1>灵壳 SpiritShell</h1>
             <p>灵魂的分身，陪伴的外壳</p>
             <a href="#join" class="cta-button">立即预约</a>
+            <br>
+            <a href="experience-entry.html" class="experience-link">轻说一句 →</a>
         </div>
     </section>
 
