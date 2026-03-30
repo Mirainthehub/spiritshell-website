@@ -16,14 +16,14 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #070a0f;
+            background: #07070d;
             min-height: 100vh;
             min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            transition: opacity 0.85s ease;
+            transition: opacity 0.9s ease;
         }
 
         body.exiting {
@@ -31,56 +31,151 @@
             pointer-events: none;
         }
 
-        /* ─── Ambient atmosphere ─── */
+        /* ─── Luma-style color orbs ─── */
 
-        .ambient {
+        .orbs {
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 0;
+            overflow: hidden;
         }
 
-        .ambient-core {
+        .orb {
             position: absolute;
+            border-radius: 50%;
+            filter: blur(72px);
+        }
+
+        /* Purple-violet — top left */
+        .orb-1 {
+            width: 680px;
+            height: 680px;
+            top: -22%;
+            left: -18%;
+            background: radial-gradient(circle, rgba(104, 99, 248, 0.16) 0%, transparent 65%);
+            animation: drift-1 24s ease-in-out infinite;
+        }
+
+        /* Magenta — bottom right */
+        .orb-2 {
+            width: 560px;
+            height: 560px;
+            bottom: -18%;
+            right: -12%;
+            background: radial-gradient(circle, rgba(216, 79, 250, 0.12) 0%, transparent 65%);
+            animation: drift-2 30s ease-in-out infinite;
+        }
+
+        /* Cyan-blue — center, breathing */
+        .orb-3 {
+            width: 480px;
+            height: 480px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(9, 158, 241, 0.09) 0%, transparent 65%);
+            animation: breathe-orb 12s ease-in-out infinite;
+        }
+
+        /* Warm rose accent — bottom left */
+        .orb-4 {
+            width: 380px;
+            height: 380px;
+            bottom: 5%;
+            left: -5%;
+            background: radial-gradient(circle, rgba(240, 88, 197, 0.08) 0%, transparent 65%);
+            animation: drift-3 20s ease-in-out infinite;
+        }
+
+        @keyframes drift-1 {
+            0%, 100% { transform: translate(0, 0); }
+            40%       { transform: translate(50px, 35px); }
+            70%       { transform: translate(-25px, 55px); }
+        }
+
+        @keyframes drift-2 {
+            0%, 100% { transform: translate(0, 0); }
+            35%       { transform: translate(-40px, -45px); }
+            70%       { transform: translate(25px, -20px); }
+        }
+
+        @keyframes drift-3 {
+            0%, 100% { transform: translate(0, 0); }
+            50%       { transform: translate(30px, -40px); }
+        }
+
+        @keyframes breathe-orb {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+        }
+
+        /* ─── Water ripple rings ─── */
+
+        .ripples {
+            position: fixed;
             inset: 0;
-            background: radial-gradient(
-                ellipse at 50% 44%,
-                rgba(55, 85, 135, 0.11) 0%,
-                transparent 62%
-            );
-            animation: breathe 10s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
         }
 
-        @keyframes breathe {
-            0%, 100% { opacity: 0.45; transform: scale(1); }
-            50%       { opacity: 1;    transform: scale(1.07); }
-        }
-
-        .ripple {
+        .ring {
             position: absolute;
             top: 50%;
             left: 50%;
             border-radius: 50%;
-            border: 1px solid rgba(100, 130, 180, 0.048);
-            transform: translate(-50%, -50%) scale(0.85);
-            animation: ripple-expand 20s ease-out infinite;
+            /* Gradient border: slightly visible at top, fades at bottom */
+            border: 1px solid transparent;
+            background:
+                linear-gradient(#07070d, #07070d) padding-box,
+                linear-gradient(
+                    160deg,
+                    rgba(180, 150, 255, 0.22),
+                    rgba(120, 180, 255, 0.10) 40%,
+                    rgba(240, 100, 220, 0.08) 70%,
+                    rgba(180, 150, 255, 0.04)
+                ) border-box;
+            transform: translate(-50%, -50%) scale(0.2);
+            opacity: 0;
+            animation: water-ripple 20s cubic-bezier(0.15, 0.5, 0.4, 1) infinite;
         }
 
-        .ripple.r1 { width: 380px; height: 250px; animation-delay: 0s;  }
-        .ripple.r2 { width: 620px; height: 410px; animation-delay: 6s;  }
-        .ripple.r3 { width: 860px; height: 570px; animation-delay: 12s; }
+        .ring.r1 { width: 300px;  height: 190px;  animation-delay: 0s;  }
+        .ring.r2 { width: 500px;  height: 320px;  animation-delay: 4s;  }
+        .ring.r3 { width: 700px;  height: 450px;  animation-delay: 8s;  }
+        .ring.r4 { width: 900px;  height: 580px;  animation-delay: 12s; }
+        .ring.r5 { width: 1100px; height: 710px;  animation-delay: 16s; }
 
-        @keyframes ripple-expand {
-            0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
-            12%  { opacity: 1; }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.22); }
+        @keyframes water-ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(0.2);
+                opacity: 0;
+            }
+            6% { opacity: 1; }
+            65% {
+                border-color: transparent;
+                background:
+                    linear-gradient(#07070d, #07070d) padding-box,
+                    linear-gradient(
+                        160deg,
+                        rgba(180, 150, 255, 0.04),
+                        rgba(120, 180, 255, 0.02) 40%,
+                        rgba(240, 100, 220, 0.015) 70%,
+                        rgba(180, 150, 255, 0.01)
+                    ) border-box;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
         }
 
         /* ─── Content ─── */
 
         .content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             width: 100%;
             max-width: 560px;
             padding: 0 28px;
@@ -90,7 +185,7 @@
         .hero-title {
             font-size: clamp(1.3rem, 4vw, 1.8rem);
             font-weight: 300;
-            color: rgba(228, 222, 214, 0.76);
+            color: rgba(235, 228, 220, 0.80);
             letter-spacing: 0.015em;
             margin-bottom: 0.55rem;
         }
@@ -98,7 +193,7 @@
         .hero-sub {
             font-size: 0.9rem;
             font-weight: 300;
-            color: rgba(190, 184, 176, 0.36);
+            color: rgba(195, 188, 200, 0.40);
             line-height: 2.2;
             margin-bottom: 2.8rem;
             letter-spacing: 0.025em;
@@ -113,40 +208,45 @@
         textarea {
             display: block;
             width: 100%;
-            background: rgba(255, 255, 255, 0.022);
-            border: 1px solid rgba(255, 255, 255, 0.062);
-            border-radius: 14px;
+            /* Glassmorphism — absorbs orb colors */
+            background: rgba(255, 255, 255, 0.028);
+            border: 1px solid rgba(255, 255, 255, 0.075);
+            border-radius: 16px;
             padding: 20px 22px;
             font-family: inherit;
             font-size: 1rem;
             font-weight: 300;
-            color: rgba(230, 224, 216, 0.88);
+            color: rgba(232, 226, 218, 0.88);
             line-height: 1.78;
             resize: none;
             min-height: 112px;
             outline: none;
-            transition: border-color 0.5s ease, box-shadow 0.5s ease;
-            caret-color: rgba(150, 185, 230, 0.65);
+            transition: border-color 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+            caret-color: rgba(170, 150, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         textarea::placeholder {
-            color: rgba(172, 166, 158, 0.28);
+            color: rgba(175, 168, 185, 0.30);
             font-weight: 300;
             font-style: italic;
         }
 
         textarea:focus {
-            border-color: rgba(95, 138, 200, 0.14);
+            background: rgba(255, 255, 255, 0.038);
+            border-color: rgba(150, 130, 255, 0.18);
             box-shadow:
-                0 0 55px rgba(65, 105, 170, 0.07),
-                inset 0 0 28px rgba(65, 105, 170, 0.022);
+                0 0 0 3px rgba(104, 99, 248, 0.06),
+                0 0 60px rgba(104, 99, 248, 0.08),
+                inset 0 0 30px rgba(104, 99, 248, 0.025);
         }
 
         .presence {
-            font-size: 0.75rem;
+            font-size: 0.73rem;
             font-weight: 300;
-            color: rgba(165, 160, 152, 0.2);
-            letter-spacing: 0.14em;
+            color: rgba(180, 165, 200, 0.22);
+            letter-spacing: 0.16em;
             margin-top: 0.7rem;
             text-align: right;
             padding-right: 4px;
@@ -155,9 +255,9 @@
 
         .enter-hint {
             margin-top: 2.2rem;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 300;
-            color: rgba(155, 150, 142, 0.18);
+            color: rgba(160, 152, 175, 0.18);
             letter-spacing: 0.1em;
             user-select: none;
         }
@@ -165,7 +265,8 @@
         /* ─── Mobile ─── */
 
         @media (max-width: 420px) {
-            .ripple.r2, .ripple.r3 { display: none; }
+            .orb-1, .orb-2 { opacity: 0.7; }
+            .ring.r4, .ring.r5 { display: none; }
             .content { padding: 0 22px; }
             textarea { padding: 16px 18px; }
         }
@@ -173,11 +274,21 @@
 </head>
 <body>
 
-    <div class="ambient">
-        <div class="ambient-core"></div>
-        <div class="ripple r1"></div>
-        <div class="ripple r2"></div>
-        <div class="ripple r3"></div>
+    <!-- Color orbs -->
+    <div class="orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
+
+    <!-- Water ripple rings -->
+    <div class="ripples">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="ring r4"></div>
+        <div class="ring r5"></div>
     </div>
 
     <div class="content">
@@ -207,29 +318,20 @@
         let phIndex = 0;
         let phTimer = null;
 
-        function showPlaceholder(text) {
-            textarea.placeholder = text;
-        }
-
         function cyclePlaceholder() {
-            // Brief blank pause creates a soft "fade" illusion between states
-            showPlaceholder('');
+            textarea.placeholder = '';
             setTimeout(() => {
                 phIndex = (phIndex + 1) % placeholders.length;
-                showPlaceholder(placeholders[phIndex]);
+                textarea.placeholder = placeholders[phIndex];
                 phTimer = setTimeout(cyclePlaceholder, 3800);
             }, 280);
         }
 
-        showPlaceholder(placeholders[0]);
+        textarea.placeholder = placeholders[0];
         phTimer = setTimeout(cyclePlaceholder, 3800);
 
-        // Stop cycling once user starts typing
         textarea.addEventListener('input', () => {
-            if (phTimer) {
-                clearTimeout(phTimer);
-                phTimer = null;
-            }
+            if (phTimer) { clearTimeout(phTimer); phTimer = null; }
             textarea.placeholder = '';
         }, { once: true });
 
@@ -248,7 +350,7 @@
             document.body.classList.add('exiting');
             setTimeout(() => {
                 window.location.href = 'experience.html';
-            }, 860);
+            }, 920);
         }
     </script>
 
